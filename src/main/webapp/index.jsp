@@ -30,7 +30,7 @@
           <main class="pt-5 mt-5">
             <section id="login-section">
                 <div class="container-fluid p-5 d-flex justify-content-center">
-                    <form action="/login" method="post" class="d-flex flex-column h-100 px-5 py-4 rounded-5 justify-content-around border border-3 border-warning" id="form">
+                    <form action="Login" method="post" class="d-flex flex-column h-100 px-5 py-4 rounded-5 justify-content-around border border-3 border-warning" id="form">
                         <div class="text-center">
                             <h3 class="text-warning fw-bolder">
                                 Accedi
@@ -40,7 +40,7 @@
                             <input type="text" name="username" placeholder="Username" class="form-control rounded-5  border border-1 border-warning">
                         </div>
                         <div class="p-2">
-                            <input type="password" name="Password" placeholder="Password" class="form-control rounded-5 border border-1 border-warning">
+                            <input type="password" name="password" placeholder="Password" class="form-control rounded-5 border border-1 border-warning">
                         </div>
                         <div class="d-flex justify-content-center pt-3">
                             <button type="submit" class="btn btn-warning text-white">Login</button>

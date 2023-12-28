@@ -19,7 +19,7 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Betacom/librerie/eclipselink/jlib/jpa/javax.persistence_2.1.0.v201304241213.jar">
+	<classpathentry kind="lib" path="C:/Betacom/librerie/eclipselink/jlib/jpa/javax.persistence_2.1.0.v201304241213.jar" sourcepath="C:/Users/aless/.m2/repository/org/eclipse/persistence/javax.persistence/2.1.0/javax.persistence-2.1.0-sources.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>

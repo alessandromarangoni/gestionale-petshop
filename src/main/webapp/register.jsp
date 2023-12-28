@@ -21,7 +21,7 @@
                         <h3 class="fw-bolder text-white">PETSHOP</h3>
                     </div>
                     <div class="col-4 justify-content-end align-items-center d-flex">
-                        <button class="btn btn-light rounded-5"><a href="" class="text-decoration-none text-warning fw-semibold">Accedi</a></button>
+                        <button class="btn btn-light rounded-5"><a href="index.jsp" class="text-decoration-none text-warning fw-semibold">Accedi</a></button>
                     </div>
                 </div>
             </div>
@@ -46,7 +46,7 @@
                     </div>
                     
                     <div class="pt-2">
-                        <input type="mail" class="form-control rounded-5 border border-1 border-warning" name="mail" id="mail" placeholder="E-mail">
+                        <input type="email" class="form-control rounded-5 border border-1 border-warning" name="mail" id="mail" placeholder="E-mail">
                     </div>
 
                     <div class="pt-2">

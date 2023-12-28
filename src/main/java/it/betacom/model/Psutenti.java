@@ -20,6 +20,17 @@ public class Psutenti implements Serializable {
 
 	private String cellulare;
 
+	/**
+	 * @param id
+	 * @param cellulare
+	 * @param cognome
+	 * @param datadinascita
+	 * @param email
+	 * @param nome
+	 * @param password
+	 * @param username
+	 */
+
 	private String cognome;
 
 	@Temporal(TemporalType.DATE)
@@ -52,7 +63,7 @@ public class Psutenti implements Serializable {
 	 * @param username
 	 */
 	public Psutenti(String cellulare, String cognome, Date datadinascita, String email, String nome, String password,
-			String ruolo, String stato, String username) {
+			 String username) {
 		super();
 		this.cellulare = cellulare;
 		this.cognome = cognome;
@@ -60,8 +71,8 @@ public class Psutenti implements Serializable {
 		this.email = email;
 		this.nome = nome;
 		this.password = password;
-		this.ruolo = ruolo;
-		this.stato = stato;
+		this.ruolo = "G";
+		this.stato = "A";
 		this.username = username;
 	}
 
