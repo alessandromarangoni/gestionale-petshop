@@ -12,7 +12,8 @@
     <title>Login</title>
 </head>
 <body>
-    <div class="vh-100">
+    <div class="vh-100 bg-custom">
+       <div class="vh-100 filter">
         <nav class="navbar bg-warning">
             <div class="container-fluid d-flex justify-content-center">
                 <div class="row d-flex justify-content-between w-100">
@@ -60,4 +61,5 @@
             </section>
           </main>
     </div>
+       </div>
 </body>

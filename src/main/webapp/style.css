@@ -5,9 +5,31 @@
     background-color: rgba(223, 219, 3, 0.11);
     max-width: 400px;
 }
+
 body{
+	background-color:white;
+}
+
+
+.bg-custom{
     background-image: url("https://media.istockphoto.com/id/489315562/photo/set-of-pet.webp?b=1&s=170667a&w=0&k=20&c=t6WTMBzG0Cqp92b_uWBeshQMNmxvSDgg8kmXfQbOKGM=");
     background-repeat: no-repeat;
     background-size: cover;
-    backdrop-filter:blur(4px);
+        -webkit-backdrop-filter: blur(4px); /* per Safari */
+    backdrop-filter: blur(4px);
+}
+
+.filter{
+	     -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+}
+
+table{
+	-webkit-box-shadow: 5px 5px 15px 5px #BFBFBF, 5px 5px 9px 7px rgba(255,255,255,0.16); 
+box-shadow: 5px 5px 15px 5px #BFBFBF, 5px 5px 9px 7px rgba(255,255,255,0.16);
+}
+
+.table-scrollable {
+    height: 500px !important; 
+    overflow-y: scroll;
 }

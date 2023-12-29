@@ -50,7 +50,7 @@ public class Login extends HttpServlet {
 		List<Psutenti> users = query.getResultList();
 		if (!users.isEmpty()) {
 		    Psutenti user = users.get(0);
-
+		    int userId = user.getId();
 		    if (user.getPassword().equals(password)) {
 		        // Password corretta
 		        if (user.getTentativiAccesso() < 3) {
@@ -62,6 +62,7 @@ public class Login extends HttpServlet {
 		            
 		            request.getSession().setAttribute("passwordSbagliata", "false");
 		            request.getSession().setAttribute("accountBloccato", "false");
+		            request.getSession().setAttribute("userId",userId);
 		            request.getSession().removeAttribute("tentativiRimasti");
 		            user.setTentativiAccesso(0);
 		            ud.updateUser(user);
