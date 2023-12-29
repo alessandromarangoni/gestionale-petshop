@@ -35,25 +35,73 @@ public class Login extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		
+		String accountBloccato = "false";
+		int tentativiRimasti = 0;
+		String passwordSbagliata = "false";
 		UserDaoImpl ud = new UserDaoImpl();
-		
+
 		EntityManager em = EntityManagerCall.getEntityManager();
 		TypedQuery<Psutenti> query = em.createQuery(
-			    "SELECT u FROM Psutenti u WHERE u.username = :username AND u.password = :password", 
-			    Psutenti.class
-			);
-			query.setParameter("username", username);
-			query.setParameter("password", password);
-			
-			List<Psutenti> users = query.getResultList();
-			if (!users.isEmpty()) {
-			    Psutenti user = users.get(0);
-			    response.sendRedirect("AllUser.jsp");
-			    System.out.println("Utente trovato: " + user.getUsername());
-			} else {
-			    System.out.println("Nessun utente corrispondente trovato");
-			}
+		    "SELECT u FROM Psutenti u WHERE u.username = :username", 
+		    Psutenti.class
+		);
+		query.setParameter("username", username);
+
+		List<Psutenti> users = query.getResultList();
+		if (!users.isEmpty()) {
+		    Psutenti user = users.get(0);
+
+		    if (user.getPassword().equals(password)) {
+		        // Password corretta
+		        if (user.getTentativiAccesso() < 3) {
+		            response.sendRedirect("Home.jsp");
+		            System.out.println("Utente trovato: " + user.getUsername() + user.getNome());
+		            
+		            request.getSession().setAttribute("nome", user.getNome());
+		            request.getSession().setAttribute("ruolo", user.getRuolo());
+		            
+		            request.getSession().setAttribute("passwordSbagliata", "false");
+		            request.getSession().setAttribute("accountBloccato", "false");
+		            request.getSession().removeAttribute("tentativiRimasti");
+		            user.setTentativiAccesso(0);
+		            ud.updateUser(user);
+		        } else {
+		            // Gestisci l'utente bloccato
+		        	accountBloccato = "true";
+		        	request.getSession().setAttribute("accountBloccato", accountBloccato);
+		            user.setStato("D");
+		            ud.updateUser(user);
+		            // Invia una risposta appropriata
+		            response.sendRedirect("index.jsp");
+		        }
+		    } else {
+		        // Password sbagliata
+		        if (user.getTentativiAccesso() < 2) {
+		            user.setTentativiAccesso(user.getTentativiAccesso() + 1);
+		            ud.updateUser(user);
+		            // Invia un messaggio di errore sulla password sbagliata
+		            passwordSbagliata = "true";
+		            tentativiRimasti = user.getTentativiAccesso();
+		            request.getSession().setAttribute("passwordSbagliata", "true");
+		            request.getSession().setAttribute("tentativiRimasti", 3 - user.getTentativiAccesso());
+		            response.sendRedirect("index.jsp");
+		        } else {
+		            // Terzo tentativo fallito, blocca l'utente
+		            user.setStato("D");
+		            user.setTentativiAccesso(user.getTentativiAccesso() + 1);
+		            ud.updateUser(user);
+		            // Invia un messaggio che l'utente è stato bloccato
+		            response.sendRedirect("index.jsp");
+		            accountBloccato = "true";
+		        	request.getSession().setAttribute("accountBloccato", accountBloccato);
+		        }
+		    }
+		} else {
+		    // Utente non trovato
+		    // Invia un messaggio di errore sull'username sbagliato
+			System.out.println("nessun user trovato");
+			response.sendRedirect("index.jsp");
+		}
 
 			em.close();
 

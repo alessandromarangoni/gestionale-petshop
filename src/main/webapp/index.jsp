@@ -21,7 +21,7 @@
                         <h3 class="fw-bolder text-white">PETSHOP</h3>
                     </div>
                     <div class="col-4 justify-content-end align-items-center d-flex">
-                        <button class="btn btn-light rounded-5"><a href="" class="text-decoration-none text-warning fw-semibold">Registrati</a></button>
+                        <button class="btn btn-light rounded-5"><a href="register.jsp" class="text-decoration-none text-warning fw-semibold">Registrati</a></button>
                     </div>
                 </div>
             </div>
@@ -29,6 +29,16 @@
     
           <main class="pt-5 mt-5">
             <section id="login-section">
+            
+				<div class="d-flex justify-content-center">
+				<div class="p-4 border border-2 border-danger rounded-5 w-25 <%= session.getAttribute("passwordSbagliata") != null && session.getAttribute("passwordSbagliata").equals("true") && session.getAttribute("tentativiRimasti").equals(0) ? "d-block" : "d-none"%>">
+					Oops! password errata hai ancora <%=session.getAttribute("tentativiRimasti") %>  tentativi 
+				</div>
+				<div class="p-4 border border-2 border-danger rounded-5 w-25 <%=session.getAttribute("accountBloccato") != null && session.getAttribute("accountBloccato").equals("true") ? "d-block" : "d-none"%>">
+					Oops! il tuo account è stato Bloccato. 
+					Contatta l'assistenza per bloccarlo
+				</div>
+				</div>
                 <div class="container-fluid p-5 d-flex justify-content-center">
                     <form action="Login" method="post" class="d-flex flex-column h-100 px-5 py-4 rounded-5 justify-content-around border border-3 border-warning" id="form">
                         <div class="text-center">

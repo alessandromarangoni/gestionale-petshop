@@ -15,21 +15,9 @@ public class Psutenti implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int id;
 
 	private String cellulare;
-
-	/**
-	 * @param id
-	 * @param cellulare
-	 * @param cognome
-	 * @param datadinascita
-	 * @param email
-	 * @param nome
-	 * @param password
-	 * @param username
-	 */
 
 	private String cognome;
 
@@ -46,22 +34,14 @@ public class Psutenti implements Serializable {
 
 	private String stato;
 
+	@Column(name="tentativi_accesso")
+	private int tentativiAccesso;
+
 	private String username;
 
 	public Psutenti() {
 	}
 
-	/**
-	 * @param cellulare
-	 * @param cognome
-	 * @param datadinascita
-	 * @param email
-	 * @param nome
-	 * @param password
-	 * @param ruolo
-	 * @param stato
-	 * @param username
-	 */
 	public Psutenti(String cellulare, String cognome, Date datadinascita, String email, String nome, String password,
 			 String username) {
 		super();
@@ -75,7 +55,7 @@ public class Psutenti implements Serializable {
 		this.stato = "A";
 		this.username = username;
 	}
-
+	
 	public int getId() {
 		return this.id;
 	}
@@ -146,6 +126,14 @@ public class Psutenti implements Serializable {
 
 	public void setStato(String stato) {
 		this.stato = stato;
+	}
+
+	public int getTentativiAccesso() {
+		return this.tentativiAccesso;
+	}
+
+	public void setTentativiAccesso(int tentativiAccesso) {
+		this.tentativiAccesso = tentativiAccesso;
 	}
 
 	public String getUsername() {
