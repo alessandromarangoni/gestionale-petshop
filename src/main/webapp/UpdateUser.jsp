@@ -26,6 +26,7 @@ Date data = user.getDatadinascita();
 
 SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
 String dataParsata = formato.format(data);
+
 %>
 
 <body>
@@ -36,7 +37,7 @@ String dataParsata = formato.format(data);
                 <div class="row d-flex justify-content-between w-100">
                     <div class="col-4"><img src="./image/petshopLogo.png" alt="logo" class="img-fluid logo"></div>
                     <div class="col-4 d-none d-md-flex justify-content-center align-items-center">
-                        <h3 class="fw-bolder text-white">PETSHOP <%=dataParsata %></h3>
+                        <h3 class="fw-bolder text-white">PETSHOP <%=userIdString %></h3>
                     </div>
                     <div class="col-4 justify-content-end align-items-center d-flex">
                         <button class="btn btn-light rounded-5"><a href="index.jsp" class="text-decoration-none text-warning fw-semibold">Accedi</a></button>

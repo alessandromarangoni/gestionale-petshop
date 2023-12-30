@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Date;
 
 import javax.servlet.ServletException;
@@ -17,16 +16,16 @@ import it.betacom.dao.implement.UserDaoImpl;
 import it.betacom.model.Psutenti;
 
 /**
- * Servlet implementation class UpdateData
+ * Servlet implementation class UpdateUsersDashboard
  */
-@WebServlet("/UpdateData")
-public class UpdateData extends HttpServlet {
+@WebServlet("/UpdateUsersDashboard")
+public class UpdateUsersDashboard extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UpdateData() {
+    public UpdateUsersDashboard() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,7 +35,7 @@ public class UpdateData extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UserDaoImpl ud = new UserDaoImpl();
-		String idString = request.getParameter("id");
+		String idString = request.getParameter("UserMId");
 		int id = Integer.parseInt(idString);
 		Psutenti user = ud.readUserById(id);
 		
@@ -65,10 +64,7 @@ public class UpdateData extends HttpServlet {
 				e.printStackTrace();
 			}
 		
-		Object currentUser = request.getSession().getAttribute("currentUser");
-		request.getSession().setAttribute("userId", currentUser);
 		response.sendRedirect("./Home.jsp");
-		
 	}
 
 	/**

@@ -9,7 +9,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -25,12 +25,14 @@
 </head>
 <%
 session.removeAttribute("tentativiRimasti");
-String userIdString = session.getAttribute("userId").toString();
+String userIdString = session.getAttribute("currentUser").toString();
 int userIdInt = Integer.parseInt(userIdString);
+
 %>
+
 <body>
 
-	<nav class="position-fixed fixed-top w-100 bg-warning">
+	<nav class="position-fixed fixed-top w-100 bg-primary">
 		<div
 			class="d-flex justify-content-between align-items-center w-100 p-4">
 			<div class="w-50 d-flex justify-content-between align-items-center">
@@ -56,16 +58,19 @@ int userIdInt = Integer.parseInt(userIdString);
 	<div class="d-flex justify-content-between">
 		<div class="vh-100 bg-primary w-25 d-md-flex flex-column d-none">
 			<div class="pt-5 mt-5">
-				<a href="./Logout" class="btn fw-bold text-white">
-				<i class="fa-solid fa-arrow-right-from-bracket text-white me-2"></i>Logout</a>
+				<a href="./Logout" class="btn fw-bold text-white"> <i
+					class="fa-solid fa-arrow-right-from-bracket text-white me-2"></i>Logout
+				</a>
 			</div>
 			<div class="pt-2">
-				<a href="./UpdateUser.jsp" class="btn fw-bold text-white">
-				<i class="fa-solid fa-list-check text-white me-2"></i>Aggiorna i tuoi dati</a>
+				<form action="./ButtonLogicForUpdate" method="get">
+				    <input type="hidden" value="<%=userIdInt%>" name="UserId">
+				    <button class="btn border border-primary" type="submit"><i class="fa-solid fa-pen text-white"></i><span class="ps-1 fw-bold text-white">Aggiorna i tuoi dati</span></button>
+				</form>
 			</div>
 		</div>
 		<div class="w-100">
-			<div class="d-flex justify-content-center mt-5 p-5 table-scrollable">
+			<div class="d-flex justify-content-center table-scrollable mt-5 p-5">
 				<table class="table text-center w-md-75 mt-5 ">
 					<thead class="rounded-top-4">
 						<tr class="bg-white">
@@ -74,6 +79,9 @@ int userIdInt = Integer.parseInt(userIdString);
 							<th scope="col" class="d-none d-md-table-cell">Email</th>
 							<th scope="col">Ruolo</th>
 							<th scope="col">Stato</th>
+							<%if(session.getAttribute("ruolo").equals("M")){%>
+							<th scope="col">Gestisci</th>
+							<%} %>
 						</tr>
 					</thead>
 					<%
@@ -81,26 +89,30 @@ int userIdInt = Integer.parseInt(userIdString);
 					List<Psutenti> allUsers = ud.getAllUser();
 					int index = 0; // Aggiungi un contatore per creare ID univoci
 					for (Psutenti user : allUsers) {
-						String accordionId = "accordion" + index; 
-						String headingId = "heading" + index; 
+						String accordionId = "accordion" + index;
+						String headingId = "heading" + index;
 					%>
 					<tbody>
-						<tr class="">
-							<td><div class="pt-3">
+						<tr
+							class="<%=user.getId() == userIdInt ? "userCorrente" : ""%>">
+							<td><div
+									class="pt-3 <%=user.getId() == userIdInt ? "userCorrente" : ""%>">
 									<span><%=user.getId()%></span>
 								</div></td>
-							<td><div class="pt-3">
+							<td><div
+									class="pt-3 <%=user.getId() == userIdInt ? "userCorrente" : ""%>">
 									<span><%=user.getUsername()%></span>
 								</div></td>
-							<td class="d-none d-md-table-cell"><div class="pt-3">
+							<td class="d-none d-md-table-cell "><div
+									class="pt-3 <%=user.getId() == userIdInt ? "userCorrente" : ""%>">
 									<span><%=user.getEmail()%></span>
 								</div></td>
-							<td class="text-center">
+							<td class="text-center ">
 								<%
 								if (session.getAttribute("ruolo").equals("M")) {
 								%>
 								<div
-									class="accordion accordion-flush d-flex justify-content-center align-items-center"
+									class="accordion accordion-flush d-flex justify-content-center align-items-center <%=user.getId() == userIdInt ? "d-none" : ""%>"
 									id="<%=accordionId%>">
 									<div class="accordion-item">
 										<h4 class="accordion-header" id="<%=headingId%>">
@@ -141,30 +153,37 @@ int userIdInt = Integer.parseInt(userIdString);
 								</div>
 							</td>
 							<td
-								class="<%=user.getStato().equals("A") ? "text-success" : "text-danger"%>">
+								class="<%=user.getStato().equals("A") ? "text-success" : "text-danger"%> ">
 								<%
 								if (session.getAttribute("ruolo").equals("M")) {
 								%>
-								<div class="">
+								<div class="pt-2 <%=user.getId() == userIdInt ? "d-none" : ""%>">
 									<form action="./UpdateStato" method="post">
 										<input type="hidden" name="userId" value="<%=user.getId()%>" />
 										<input type="hidden" name="newState"
 											value="<%=user.getStato().equals("A") ? "D" : "A"%>" />
 										<button type="submit"
-											class="btn btn-light rounded-5 <%=user.getStato().equals("A") ? "text-danger border border-danger"
-		: "btn-success text-success border border-success"%>"><%=user.getStato().equals("A") ? "Blocca" : "Attiva"%></button>
+											class="btn btn-light rounded-5 <%=user.getStato().equals("A") ? "text-danger border border-danger" : "btn-success text-success border border-success"%>"><%=user.getStato().equals("A") ? "Blocca" : "Attiva"%></button>
 									</form>
 								</div> <%
- } else {
- %>
+ 								} else {
+ 								%>
 								<div
 									class="<%=user.getStato().equals("A") ? "text-success" : "text-danger"%>">
 									<span><%=user.getStato().equals("A") ? "Attivo" : "Bloccato"%></span>
 								</div> <%
- }
- %>
+ 								}
+ 								%>
 							</td>
-
+							<%if(session.getAttribute("ruolo").equals("M")){%>
+							<td><div class="pt-3">
+									<form action="./ButtonLogicForUpdate" method="get">
+									    <input type="hidden" value="<%=user.getId()%>" name="UserId">
+									    <button class="btn border border-primary" type="submit"><i class="fa-solid fa-pen text-primary"></i></button>
+									</form>
+								</div>
+							</td>
+							<% }%>
 						</tr>
 						<%
 						index++; // Incrementa il contatore dopo ogni iterazione
@@ -174,7 +193,7 @@ int userIdInt = Integer.parseInt(userIdString);
 
 				</table>
 			</div>
+			</div>
 		</div>
-	</div>
 </body>
 </html>

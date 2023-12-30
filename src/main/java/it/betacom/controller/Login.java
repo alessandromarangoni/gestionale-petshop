@@ -62,7 +62,7 @@ public class Login extends HttpServlet {
 		            
 		            request.getSession().setAttribute("passwordSbagliata", "false");
 		            request.getSession().setAttribute("accountBloccato", "false");
-		            request.getSession().setAttribute("userId",userId);
+		            request.getSession().setAttribute("currentUser",userId);
 		            request.getSession().removeAttribute("tentativiRimasti");
 		            user.setTentativiAccesso(0);
 		            ud.updateUser(user);
