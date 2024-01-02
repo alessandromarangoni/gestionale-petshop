@@ -14,7 +14,7 @@ public class Animale {
     @Column(name = "nome_animale", nullable = false)
     private String nomeAnimale;
 
-    @Column(name = "data_acquisto", nullable = false)
+    @Column(name = "data_acquisto", nullable = true)
     @Temporal(TemporalType.DATE)
     private Date dataAcquisto;
 
@@ -61,9 +61,8 @@ public class Animale {
 	 * @param prezzo
 	 * @param tipoAnimale
 	 */
-	public Animale(int matricola, String nomeAnimale, double prezzo, String tipoAnimale) {
+	public Animale(String nomeAnimale, double prezzo, String tipoAnimale) {
 		super();
-		this.matricola = matricola;
 		this.nomeAnimale = nomeAnimale;
 		this.prezzo = prezzo;
 		this.tipoAnimale = tipoAnimale;

@@ -36,6 +36,7 @@ public class Cliente {
 	 * @param citta
 	 * @param telefono
 	 */
+	
 	public Cliente(String nome, String cognome, String indirizzo, String citta, String telefono) {
 		super();
 		this.nome = nome;
