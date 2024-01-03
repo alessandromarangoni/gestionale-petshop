@@ -32,7 +32,7 @@ int userIdInt = Integer.parseInt(userIdString);
 
 <body>
 
-	<nav class="position-fixed fixed-top w-100 bg-primary">
+	<nav class="position-fixed fixed-top w-100 bg-primary border-bottom border-white border-2">
 		<div
 			class="d-flex justify-content-between align-items-center w-100 p-4">
 			<div class="w-50 d-flex justify-content-between align-items-center">
@@ -80,6 +80,23 @@ int userIdInt = Integer.parseInt(userIdString);
 				</form>
 			</div>
 			<%}%>
+			<div class="pt-2">
+				<form action="./AllCustomers.jsp" method="get">
+						<input type="hidden" value="<%=userIdInt%>" name="UserId"> 
+					<button class="btn border border-primary" type="submit">
+						<i class="fa-solid fa-users text-white"></i><span
+							class="ps-1 fw-bold text-white">Lista Clienti</span>
+					</button>
+				</form>
+			</div>
+			<div class="pt-2">
+				<form action="./AnimalList.jsp" method="get">
+					<button class="btn border border-primary" type="submit">
+						<i class="fa-solid fa-paw text-white"></i><span
+							class="ps-1 fw-bold text-white">Lista Animali</span>
+					</button>
+				</form>
+			</div>
 		</div>
 		<div class="w-100">
 			<div class="d-flex justify-content-center table-scrollable mt-5 p-5">

@@ -18,6 +18,15 @@ public class AnimaliDaoImpl implements AnimaliDao {
             em.close();
         }
     }
+	
+	public List<Animale> getAllSellableAnimali() {
+        EntityManager em = EntityManagerCall.getEntityManager();
+        try {
+            return em.createQuery("SELECT a FROM Animale a LEFT JOIN a.cliente c WHERE c.idCliente IS NULL", Animale.class).getResultList();
+        } finally {
+            em.close();
+        }
+    }
 
     public void createAnimale(Animale animale) {
         EntityManager em = EntityManagerCall.getEntityManager();

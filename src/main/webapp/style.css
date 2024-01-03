@@ -30,7 +30,7 @@ box-shadow: 5px 5px 15px 5px #BFBFBF, 5px 5px 9px 7px rgba(255,255,255,0.16);
 }
 
 .table-scrollable {
-    height: 500px !important; 
+    max-height: 75vh !important; 
     overflow-y: scroll;
 }
 

@@ -94,4 +94,12 @@ public class Cliente {
 		this.telefono = telefono;
 	}
 
+	public Set<Animale> getAnimali() {
+		return animali;
+	}
+
+	public void setAnimali(Set<Animale> animali) {
+		this.animali = animali;
+	}
+
 }
