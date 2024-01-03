@@ -154,12 +154,11 @@ int clienteIdInt = Integer.parseInt(userIdString);
 								</div>
 							</td>
 							<td class="">
-								<%
-            if (session.getAttribute("ruolo").equals("M")) {
-            %>
 								<div
 									class="pt-2 <%=cliente.getIdCliente() == clienteIdInt ? "d-none" : ""%>">
-									<div class="accordion" id="<%=accordionId%>">
+									<% Set<Animale> acquisti = cliente.getAnimali();%>
+									<%if(acquisti.size() > 0) {%>
+										<div class="accordion" id="<%=accordionId%>">
 										<div class="accordion-item">
 											<h2 class="accordion-header" id="<%=headingId%>">
 												<button class="accordion-button collapsed" type="button"
@@ -171,29 +170,27 @@ int clienteIdInt = Integer.parseInt(userIdString);
 												aria-labelledby="<%=headingId%>"
 												data-bs-parent="#<%=accordionId%>">
 												<div class="accordion-body">
-													<% Set<Animale> acquisti = cliente.getAnimali();
-                                for (Animale acquisto : acquisti) { 
-                                	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");%>
+                               							 <% for (Animale acquisto : acquisti) { 
+                                							SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");%>
 													<div>
-														<span><%=acquisto.getNomeAnimale() %></span>
-														<span><%=acquisto.getPrezzo() + " &euro;"%></span>
-														<span><% if (acquisto.getDataAcquisto() != null) {
+														<span>matricola: <%=acquisto.getMatricola() %></span>
+														<span>vendita: <% if (acquisto.getDataAcquisto() != null) {
 													        String dataFormattata = sdf.format(acquisto.getDataAcquisto());
 													        %><span><%= dataFormattata %></span><%
 													    } else {
 													        %><span>Data non disponibile</span><%
 													    } %></span>
+													    <span>| <%=acquisto.getPrezzo() + " &euro;"%></span>
 													</div>
 													<% } %>
 												</div>
 											</div>
 										</div>
 									</div>
-								</div> <%
-            } else {
-                // ...
-            }
-            %>
+									<%}else{ %>
+									<span>Nessun acquisto</span>
+									<%} %>
+								</div>
 							</td>
 						</tr>
 						<%
