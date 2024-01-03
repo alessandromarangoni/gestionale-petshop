@@ -7,6 +7,7 @@
 <%@ page import="java.util.stream.Collectors"%>
 <%@ page import="java.util.Comparator"%>
 <%@ page import="java.util.Date"%>
+<%@ page import="java.text.SimpleDateFormat"%>
 <%@ page import="it.betacom.model.*"%>
 <!DOCTYPE html>
 <html>
@@ -171,11 +172,17 @@ int clienteIdInt = Integer.parseInt(userIdString);
 												data-bs-parent="#<%=accordionId%>">
 												<div class="accordion-body">
 													<% Set<Animale> acquisti = cliente.getAnimali();
-                                for (Animale acquisto : acquisti) { %>
+                                for (Animale acquisto : acquisti) { 
+                                	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");%>
 													<div>
 														<span><%=acquisto.getNomeAnimale() %></span>
-														<span><%=acquisto.getPrezzo() %></span>
-														<span><%=acquisto.getDataAcquisto() %></span>
+														<span><%=acquisto.getPrezzo() + " &euro;"%></span>
+														<span><% if (acquisto.getDataAcquisto() != null) {
+													        String dataFormattata = sdf.format(acquisto.getDataAcquisto());
+													        %><span><%= dataFormattata %></span><%
+													    } else {
+													        %><span>Data non disponibile</span><%
+													    } %></span>
 													</div>
 													<% } %>
 												</div>
