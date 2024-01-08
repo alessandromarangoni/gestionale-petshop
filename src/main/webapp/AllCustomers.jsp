@@ -67,7 +67,7 @@ int clienteIdInt = Integer.parseInt(userIdString);
 				</a>
 			</div>
 			<div class="pt-2">
-				<form action="./ButtonLogicForUpdate" method="get">
+				<form action="./ButtonLogicForUpdate" method="post">
 					<button class="btn border border-primary" type="submit">
 						<i class="fa-solid fa-pen text-white"></i><span
 							class="ps-1 fw-bold text-white">Aggiorna i tuoi dati</span>
@@ -78,10 +78,9 @@ int clienteIdInt = Integer.parseInt(userIdString);
 			if (session.getAttribute("ruolo").equals("M")) {
 			%>
 			<div class="pt-2">
-				<form action="./AggungiAnimale.jsp" method="get">
+				<form action="./AggungiAnimale.jsp" method="POST">
 					<button class="btn border border-primary" type="submit">
-						<i class="fa-solid fa-plus text-white"></i><span
-							class="ps-1 fw-bold text-white">Aggiungi un animale</span>
+						<i class="fa-solid fa-plus text-white"></i> <span class="ps-1 fw-bold text-white">Aggiungi un animale</span>
 					</button>
 				</form>
 			</div>
@@ -89,7 +88,7 @@ int clienteIdInt = Integer.parseInt(userIdString);
 			}
 			%>
 			<div class="pt-2">
-				<form action="./AnimalList.jsp" method="get">
+				<form action="./AnimalList.jsp" method="POST">
 					<button class="btn border border-primary" type="submit">
 						<i class="fa-solid fa-paw text-white"></i><span
 							class="ps-1 fw-bold text-white">Lista Animali</span>

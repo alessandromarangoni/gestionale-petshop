@@ -61,7 +61,7 @@ int clienteIdInt = Integer.parseInt(userIdString);
 				</a>
 			</div>
 			<div class="pt-2">
-				<form action="./ButtonLogicForUpdate" method="get">
+				<form action="./ButtonLogicForUpdate" method="post">
 				    <button class="btn border border-primary" type="submit"><i class="fa-solid fa-pen text-white"></i><span class="ps-1 fw-bold text-white">Aggiorna i tuoi dati</span></button>
 				</form>
 			</div>
@@ -69,7 +69,7 @@ int clienteIdInt = Integer.parseInt(userIdString);
 			if (session.getAttribute("ruolo").equals("M")) {
 			%>
 			<div class="pt-2">
-				<form action="./AggungiAnimale.jsp" method="get">
+				<form action="./AggungiAnimale.jsp" method="post">
 					<button class="btn border border-primary" type="submit">
 						<i class="fa-solid fa-plus text-white"></i><span
 							class="ps-1 fw-bold text-white">Aggiungi un animale</span>
@@ -78,7 +78,7 @@ int clienteIdInt = Integer.parseInt(userIdString);
 			</div>
 			<%}%>
 			<div class="pt-2">
-				<form action="./AllCustomers.jsp" method="get">
+				<form action="./AllCustomers.jsp" method="post">
 					<button class="btn border border-primary" type="submit">
 						<i class="fa-solid fa-users text-white"></i><span
 							class="ps-1 fw-bold text-white">Lista Clienti</span>
@@ -105,6 +105,13 @@ int clienteIdInt = Integer.parseInt(userIdString);
 					    <div class="d-flex justify-content-between pb-2">
 					    <span class="fw-semibold"><%=animale.getTipoAnimale() %></span>
 					    <span><%=animale.getPrezzo() + "&euro;"%></span>
+					    
+					    <div class="d-flex justify-content-between">
+					    	<form action="./EditAnimal" method="POST">
+					    		<input type="hidden" name="delete" value="1">
+					    		<button class="btn btn-primary">delete</button>
+					    	</form>
+					    </div>
 					    </div>
 					  </div>
 					</div>

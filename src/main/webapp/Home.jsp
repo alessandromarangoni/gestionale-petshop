@@ -64,7 +64,11 @@ int userIdInt = Integer.parseInt(userIdString);
 			</div>
 			<div class="pt-2">
 				<form action="./ButtonLogicForUpdate" method="get">
-				    <button class="btn border border-primary" type="submit"><i class="fa-solid fa-pen text-white"></i><span class="ps-1 fw-bold text-white">Aggiorna i tuoi dati</span></button>
+					<input type="hidden" value="<%=userIdInt%>" name="UserId"> 
+				    <button class="btn border border-primary" type="submit">
+				    <i class="fa-solid fa-pen text-white"></i>
+				    <span class="ps-1 fw-bold text-white">Aggiorna i tuoi dati</span>
+				    </button>
 				</form>
 			</div>
 			<%
@@ -140,6 +144,7 @@ int userIdInt = Integer.parseInt(userIdString);
 								<%
 								if (session.getAttribute("ruolo").equals("M")) {
 								%>
+								
 								<div
 									class="accordion accordion-flush d-flex justify-content-center align-items-center <%=user.getId() == userIdInt ? "d-none" : ""%>"
 									id="<%=accordionId%>">
