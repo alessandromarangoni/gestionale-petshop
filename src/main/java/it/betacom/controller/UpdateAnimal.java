@@ -11,17 +11,18 @@ import it.betacom.dao.implement.AnimaliDaoImpl;
 import it.betacom.model.Animale;
 
 /**
- * Servlet implementation class EditAnimal
+ * Servlet implementation class UpdateAnimal
  */
-@WebServlet("/EditAnimal")
-public class EditAnimal extends HttpServlet {
+@WebServlet("/UpdateAnimal")
+public class UpdateAnimal extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EditAnimal() {
+    public UpdateAnimal() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -30,19 +31,25 @@ public class EditAnimal extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		AnimaliDaoImpl ad = new AnimaliDaoImpl();
 		
-		if(request.getParameter("delete") != null && request.getParameter("delete").equalsIgnoreCase("1")) {
-			
-			int matricolaInt = Integer.parseInt(request.getParameter("matricola"));
-			
-			Animale animale = ad.readAnimaleByMatricola(matricolaInt);
-			ad.deleteAnimale(animale);
-			response.sendRedirect("./AnimalList.jsp");
-		}else if(request.getParameter("delete") == null){
-			int matricolaInt = Integer.parseInt(request.getParameter("matricola"));
-			Animale animale = ad.readAnimaleByMatricola(matricolaInt);
-			request.getSession().setAttribute("animale", animale);
-			response.sendRedirect("./UpdateAnimali.jsp");
-		}
+		String nomeAnimale = request.getParameter("nome-animale");
+		String tipoAnimale = request.getParameter("tipo-animale");
+		String prezzoStringa = request.getParameter("prezzo");
+		String matricolaString = request.getParameter("matricola");
+		
+		int matricola = Integer.parseInt(matricolaString);
+		
+		double prezzo = Double.parseDouble(prezzoStringa);
+		
+		Animale animale = ad.readAnimaleByMatricola(matricola);
+		
+		animale.setTipoAnimale(tipoAnimale);
+		animale.setPrezzo(prezzo);
+		animale.setNomeAnimale(nomeAnimale);
+		
+		ad.updateAnimale(animale);
+		
+		response.sendRedirect("./AnimalList.jsp");
+		
 	}
 
 	/**

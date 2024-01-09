@@ -31,6 +31,7 @@
 <%
 String userIdString = session.getAttribute("currentUser").toString();
 int clienteIdInt = Integer.parseInt(userIdString);
+int userIdInt = Integer.parseInt(userIdString);
 %>
 
 <body>
@@ -68,6 +69,7 @@ int clienteIdInt = Integer.parseInt(userIdString);
 			</div>
 			<div class="pt-2">
 				<form action="./ButtonLogicForUpdate" method="post">
+				<input type="hidden" value="<%=userIdInt%>" name="UserId"> 
 					<button class="btn border border-primary" type="submit">
 						<i class="fa-solid fa-pen text-white"></i><span
 							class="ps-1 fw-bold text-white">Aggiorna i tuoi dati</span>

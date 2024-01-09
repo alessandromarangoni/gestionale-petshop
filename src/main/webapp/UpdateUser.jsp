@@ -40,7 +40,7 @@ String dataParsata = formato.format(data);
                         <h3 class="fw-bolder text-white">PETSHOP <%=userIdString %></h3>
                     </div>
                     <div class="col-4 justify-content-end align-items-center d-flex">
-                        <button class="btn btn-light rounded-5"><a href="index.jsp" class="text-decoration-none text-warning fw-semibold">Accedi</a></button>
+                        <button class="btn btn-light rounded-5"><a href="./Home.jsp" class="text-decoration-none text-warning fw-semibold">Home</a></button>
                     </div>
                 </div>
             </div>

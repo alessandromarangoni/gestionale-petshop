@@ -53,8 +53,8 @@
                         <div class="p-2">
                             <input type="password" name="password" placeholder="Password" class="form-control rounded-5 border border-1 border-warning">
                         </div>
-                        <div class="d-flex justify-content-center pt-3">
-                            <button type="submit" class="btn btn-warning text-white">Login</button>
+                        <div class="d-flex justify-content-center align-items-end pt-3">
+                            <button type="submit" class="btn btn-warning text-white">Login</button> <a href="./register.jsp" class="ps-2 fs-6">Non sei registrato?</a>
                         </div>
                     </form>
                 </div>

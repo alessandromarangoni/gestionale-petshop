@@ -25,6 +25,7 @@
 </head>
 <%
 String userIdString = session.getAttribute("currentUser").toString();
+int userIdInt = Integer.parseInt(userIdString);
 int clienteIdInt = Integer.parseInt(userIdString);
 %>
 
@@ -62,6 +63,7 @@ int clienteIdInt = Integer.parseInt(userIdString);
 			</div>
 			<div class="pt-2">
 				<form action="./ButtonLogicForUpdate" method="post">
+				<input type="hidden" value="<%=userIdInt%>" name="UserId"> 
 				    <button class="btn border border-primary" type="submit"><i class="fa-solid fa-pen text-white"></i><span class="ps-1 fw-bold text-white">Aggiorna i tuoi dati</span></button>
 				</form>
 			</div>
@@ -107,9 +109,14 @@ int clienteIdInt = Integer.parseInt(userIdString);
 					    <span><%=animale.getPrezzo() + "&euro;"%></span>
 					    
 					    <div class="d-flex justify-content-between">
+					    	<form action="./EditAnimal" method="post">
+					    		<input type="hidden" name="matricola" value="<%=animale.getMatricola()%>">
+					    		<button type="submit" class="btn btn-primary rounded-5">edit</button>
+					    	</form>
 					    	<form action="./EditAnimal" method="POST">
 					    		<input type="hidden" name="delete" value="1">
-					    		<button class="btn btn-primary">delete</button>
+					    		<input type="hidden" name="matricola" value="<%=animale.getMatricola()%>">
+					    		<button type="submit" class="btn btn-danger ms-2 rounded-5">delete</button>
 					    	</form>
 					    </div>
 					    </div>

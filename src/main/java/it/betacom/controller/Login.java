@@ -42,7 +42,7 @@ public class Login extends HttpServlet {
 
 		EntityManager em = EntityManagerCall.getEntityManager();
 		TypedQuery<Psutenti> query = em.createQuery(
-		    "SELECT u FROM Psutenti u WHERE u.username = :username", 
+		    "SELECT u FROM Psutenti u WHERE u.username = :username OR u.email = :username", 
 		    Psutenti.class
 		);
 		query.setParameter("username", username);
