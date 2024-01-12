@@ -24,6 +24,13 @@
 <title>Users</title>
 </head>
 <%
+if (session.getAttribute("currentUser") == null) {
+    response.sendRedirect("index.jsp");
+    return;
+}
+
+
+
 session.removeAttribute("tentativiRimasti");
 String userIdString = session.getAttribute("currentUser").toString();
 int userIdInt = Integer.parseInt(userIdString);

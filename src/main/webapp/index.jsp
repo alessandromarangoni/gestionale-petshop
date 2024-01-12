@@ -29,14 +29,19 @@
           </nav>
     
           <main class="pt-5 mt-5">
+          		
+          	<%if(session.getAttribute("registrato") != null){ %>
+				<div class="d-flex justify-content-center">
+					<div class="alert alert-success w-25 fw-semibold" role="alert"> registrazione effettuata </div>
+				</div>
+            <%} %>	
             <section id="login-section">
-            
 				<div class="d-flex justify-content-center">
 				<div class="p-4 border border-2 border-danger rounded-5 w-25 <%= session.getAttribute("passwordSbagliata") != null && session.getAttribute("passwordSbagliata").equals("true") && session.getAttribute("tentativiRimasti").equals(0) ? "d-block" : "d-none"%>">
 					Oops! password errata hai ancora <%=session.getAttribute("tentativiRimasti") %>  tentativi 
 				</div>
 				<div class="p-4 border border-2 border-danger rounded-5 w-25 <%=session.getAttribute("accountBloccato") != null && session.getAttribute("accountBloccato").equals("true") ? "d-block" : "d-none"%>">
-					Oops! il tuo account è stato Bloccato. 
+					Oops! il tuo account Ã¨ stato Bloccato. 
 					Contatta l'assistenza per bloccarlo
 				</div>
 				</div>

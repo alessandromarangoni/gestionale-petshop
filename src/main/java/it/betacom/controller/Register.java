@@ -71,6 +71,7 @@ public class Register extends HttpServlet {
 		Psutenti user = new Psutenti(cellulare,cognome,dataParsata,mail,nome,password,username);
 		ud.createUser(user);
 		
+		request.getSession().setAttribute("registrato", "true");
 		response.sendRedirect("index.jsp");
 	}
 
